@@ -33,7 +33,7 @@ fi
 
 # Creating directory tree && symbolic link
 [ ! -d /home/steam/ARK/log ] && mkdir /home/steam/ARK/log
-[ ! -d /home/steam/ARK/backup ] && mkdir /home/steam/ARK/backup
+[ ! -d /home/steam/ARK/backups ] && mkdir /home/steam/ARK/backups
 [ ! -d /home/steam/ARK/staging ] && mkdir /home/steam/ARK/staging
 [ ! -f /home/steam/ARK/crontab ] && cp /home/steam/crontab /home/steam/ARK/crontab
 
@@ -45,8 +45,8 @@ chmod -R +rw /home/steam
 # Server configuration
 if [ ! -d /home/steam/ARK/server  ] || [ ! -f /home/steam/ARK/server/version.txt ]; then 
 	arkmanager install
-	[ ! -L /home/steam/ARK/Game.ini ] && ln -s /home/steam/ARK/server/ShooterGame/Saved/Config/LinuxServer/Game.ini /home/steam/ARK/Game.ini
-	[ ! -L /home/steam/ARK/GameUserSettings.ini ] && ln -s /home/steam/ARK/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini /home/steam/ARK/GameUserSettings.ini
+	[ ! -L /home/steam/ARK/Game.ini ] && ln -s server/ShooterGame/Saved/Config/LinuxServer/Game.ini /home/steam/ARK/Game.ini
+	[ ! -L /home/steam/ARK/GameUserSettings.ini ] && ln -s server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini /home/steam/ARK/GameUserSettings.ini
 else
 	# We overwrite the coniguration file each time
 	cp /home/steam/ARK/template/arkmanager.cfg /etc/arkmanager/arkmanager.cfg
