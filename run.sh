@@ -10,11 +10,13 @@ export TERM=linux
 function stop {
 	# Save world before stop
 	arkmanager saveworld
+
 	# Backup if activated
 	if [ ${BACKUPONSTOP} -eq 1 ] && [ "$(ls -A server/ShooterGame/Saved/SavedArks)" ]; then
 		echo "[Backup on stop]"
 		arkmanager backup
 	fi
+
 	# Stop with warning if activated
 	if [ ${WARNONSTOP} -eq 1 ];then 
 	    arkmanager stop --warn
@@ -74,7 +76,8 @@ else
 	if [ $UPDATEONSTART -eq 0 ]; then
 		arkmanager start
 	else
-		# TODO: To configure...
+		arkmanager update
+		arkmanager update --update-mods
 		arkmanager start
 	fi
 
