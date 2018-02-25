@@ -40,14 +40,14 @@ You can manually update your mods:
 You can manually update your server:  
   `docker exec ark_server arkmanager update --force`
 
+You can check upgrade Ark Server Tools:  
+  `docker exec ark arkmanager upgrade-tools`
+
 You can force save your server:  
   `docker exec ark_server arkmanager saveworld`
 
 You can backup your server:  
   `docker exec ark_server arkmanager backup`
-
-You can check upgrade Ark Server Tools:  
-  `docker exec ark_server arkmanager upgrade-tools`
 
 You can use rcon command via docker:  
   `docker exec ark_server arkmanager rconcmd ListPlayers`
@@ -143,4 +143,4 @@ Time Zone : Set the container timezone (for crontab). (You can get your timezone
 
 ## Changelog
 + 1.0:
-  - Initial image: works with Ark Server tools 1.6.38
+  - Initial image: works with Ark Server tools 1.6.39
