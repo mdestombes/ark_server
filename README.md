@@ -144,3 +144,5 @@ Time Zone : Set the container timezone (for crontab). (You can get your timezone
 ## Changelog
 + 1.0:
   - Initial image: works with Ark Server tools 1.6.39
++ 1.1:
+  - Initial image: works with Ark Server tools 1.6.40
