@@ -64,7 +64,7 @@ if [ ! -d /home/steam/ARK/template ]; then
 		if [[ $CUR_INSTANCE -eq 1 ]]; then
 			NEW_SERVER_PORT=$(($SERVERPORT))
 			NEW_STEAM_PORT=$(($STEAMPORT))
-			NEW_RCON_PORT=32330
+			NEW_RCON_PORT=$(($RCONPORT))
 			NEW_SESSION_NAME="${SESSIONNAME}_${SERVERMAP}_Main"
 			NEW_SAVED_DIR="Save_Main"
 			NEW_SERVER_NAME="server_Main"
@@ -89,7 +89,7 @@ if [ ! -d /home/steam/ARK/template ]; then
 
 			NEW_SERVER_PORT=$(($SERVERPORT + (${N_SUB} * 10)))
 			NEW_STEAM_PORT=$(($STEAMPORT + ${N_SUB}))
-			NEW_RCON_PORT=$((32330 + ${N_SUB}))
+			NEW_RCON_PORT=$(($RCONPORT + ${N_SUB}))
 			NEW_SESSION_NAME="${SESSIONNAME}_${SERVERMAP}_Sub${N_SUB}"
 			NEW_SAVED_DIR="Save_Sub"${N_SUB}
 			NEW_SERVER_NAME="server_Sub"${N_SUB}

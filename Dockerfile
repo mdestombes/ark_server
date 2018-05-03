@@ -19,10 +19,12 @@ ENV UPDATEONSTART 0
 ENV BACKUPONSTART 0
 #  Tag on github for ark server tools
 ENV GIT_TAG v1.6.40
-# Server PORT (you can't remap with docker, it doesn't work)
+# Server PORT
 ENV SERVERPORT 27015
-# Steam port (you can't remap with docker, it doesn't work)
+# Steam port
 ENV STEAMPORT 7778
+# Rcon port
+ENV RCONPORT 32330
 # if the server should backup after stopping
 ENV BACKUPONSTOP 0
 # If the server warn the players before stopping

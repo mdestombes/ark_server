@@ -6,21 +6,21 @@ Docker build for managing an ARK: Survival Evolved server.
 
 This image is base on TuRz4m/Ark-docker functionnalities. Thanks for this good base of Dockerfile and existing structure.
 
-This image uses [Ark Server Tools](https://github.com/FezVrasta/ark-server-tools) to manage an ark server.
+This image uses [ARK Server Tools](https://github.com/FezVrasta/ark-server-tools) to manage an ARK server.
 
 ## Features
  - Easy install (no steamcmd / lib32... to install)
- - Use Ark Server Tools : update/install/start/backup/rcon/mods
+ - Use ARK Server Tools : update/install/start/backup/rcon/mods
  - Easy crontab configuration
- - Easy access to ark config file
- - Mods handling (via Ark Server Tools)
+ - Easy access to ARK config file
+ - Mods handling (via ARK Server Tools)
  - `Docker stop` is a clean stop 
 
 ## Usage
 Fast & Easy server setup:  
   `docker run -d -p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp -e SESSIONNAME="myserver" -e ADMINPASSWORD="mypasswordadmin" --name ark_server mdestombes/ark_server:[last_version_available]`
 
-You can map the ark volume to access config files:  
+You can map the ARK volume to access config files:  
   `docker run -d -p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp -e SESSIONNAME="myserver" -v /my/path/to/ark:/home/steam/ARK:rw --name ark_server mdestombes/ark_server:[last_version_available]`
 
 You can manager your server with rcon if you map the rcon port (you can rebind the rcon port with docker):  
@@ -38,7 +38,7 @@ You can change server and steam default port to allow multiple servers on same h
 
 Then you can edit:
  - */my/path/to/ark/template/[arkmanager.cfg/main.cgf/subX.cgf]* (The values override Game.ini and GameUserSetting.ini | `X` for each sub instance | In case of multi instance, first instance is main, others are subX | `X` start from `1` for instance `2`)
- - */my/path/to/ark/[GameUserSetting.ini/Game.ini]* (for more specific ark server configurations)
+ - */my/path/to/ark/[GameUserSetting.ini/Game.ini]* (for more specific ARK server configurations)
 
 You can check your server with:  
   `docker exec ark_server arkmanager status @all`
@@ -83,9 +83,9 @@ To add mods, you only need to change the variable ark_GameModIds in */my/path/to
 ## Recommended Usage
  - First run  
   `docker run -it -p 7778:7778 -p 7778:7778/udp -p 27015:27015 -p 27015:27015/udp -p 32330:32330 -e SESSIONNAME="myserver" -e ADMINPASSWORD="mypasswordadmin" -v /my/path/to/ark:/home/steam/ARK:rw --name ark_server mdestombes/ark_server:[last_version_available]`
- - Wait for ark to be downloaded installed. Server will stop after installation.
+ - Wait for ARK to be downloaded installed. Server will stop after installation.
  - Edit */my/path/to/ark/template/[arkmanager.cfg/main.cgf]* (The values override Game.ini and GameUserSetting.ini | Only `main.cfg` is present because there is only one session)
- - Edit */my/path/to/ark/[GameUserSetting.ini/Game.ini]* (For more specific ark server configurations)
+ - Edit */my/path/to/ark/[GameUserSetting.ini/Game.ini]* (For more specific ARK server configurations)
  - Add auto update every day and autobackup by editing */my/path/to/ark/crontab* with this lines:  
   `0 0 * * * arkmanager update --warn --update-mods @all >> /home/steam/ARK/log/crontab.log 2>&1`  
   `0 0 * * * arkmanager backup @all >> /home/steam/ARK/log/crontab.log 2>&1`  
@@ -98,19 +98,21 @@ To add mods, you only need to change the variable ark_GameModIds in */my/path/to
 
 ## Variables
 + __SESSIONNAME__
-Name of your ark server (default : "ArkServer")
+Name of your ARK server (default : "ArkServer")
 + __SERVERMAP__
-Map of your ark server (default : "TheIsland")
+Map of your ARK server (default : "TheIsland")
 + __SERVERPASSWORD__
-Password of your ark server (default : "ServerPassword")
+Password of your ARK server (default : "ServerPassword")
 + __ADMINPASSWORD__
-Admin password of your ark server (default : "AdminPassword")
+Admin password of your ARK server (default : "AdminPassword")
 + __NBPLAYERS__
-Number of playyers allowed of your ark server (default : 20)
+Number of players allowed of your ARK server (default : 20)
 + __SERVERPORT__
-Ark server port (can't rebind with docker, it doesn't work) (default : 27015)
+Main ARK server port (default : 27015)
 + __STEAMPORT__
-Steam server port (can't rebind with docker, it doesn't work) (default : 7778)
+Main steam server port (default : 7778)
++ __RCONPORT__
+Main rcon port (default : 32330)
 + __BACKUPONSTART__
 1 : Backup the server when the container is started. 0: no backup (default : 0)
 + __UPDATEPONSTART__
@@ -130,22 +132,22 @@ Time Zone : Set the container timezone (for crontab). (You can get your timezone
 + __/home/steam/ARK__: Working directory wich contains:
   + /home/steam/ARK/backup: backups
   + /home/steam/ARK/crontab: crontab config file
-  + /home/steam/ARK/Game.ini: ark game.ini config file
-  + /home/steam/ARK/GameUserSetting.ini: ark gameusersetting.ini config file
+  + /home/steam/ARK/Game.ini: ARK game.ini config file
+  + /home/steam/ARK/GameUserSetting.ini: ARK gameusersetting.ini config file
   + /home/steam/ARK/log: logs
   + /home/steam/ARK/server: Server files and data.
   + /home/steam/ARK/staging: default directory if you use the --downloadonly option when updating.
   + /home/steam/ARK/template: Default config files
-  + /home/steam/ARK/template/arkmanager.cfg: config file for Ark Server Tools
-  + /home/steam/ARK/template/main.cfg: config file for first instance of Ark Server Tools (Prefere to set this instead of arkmanager.cfg)
-  + /home/steam/ARK/template/subX.cfg: config file for others instances of Ark Server Tools (Prefere to set this instead of arkmanager.cfg)
+  + /home/steam/ARK/template/arkmanager.cfg: config file for ARK Server Tools
+  + /home/steam/ARK/template/main.cfg: config file for first instance of ARK Server Tools (Prefere to set this instead of arkmanager.cfg)
+  + /home/steam/ARK/template/subX.cfg: config file for others instances of ARK Server Tools (Prefere to set this instead of arkmanager.cfg)
 
 ---
 
 ## Expose
-+ Port: __STEAMPORT__: Basic steam port (default: 7778)
-+ Port: __SERVERPORT__: Basic server port (default: 27015)
-+ Port: __32330__: Basic rcon port
++ Port: __STEAMPORT__: Main steam port (default: 7778)
++ Port: __SERVERPORT__: Main server port (default: 27015)
++ Port: __RCONPORT__: Main rcon port (default : 32330)
 
 ---
 
@@ -155,8 +157,8 @@ Time Zone : Set the container timezone (for crontab). (You can get your timezone
 
 ## Changelog
 + 1.0:
-  - Initial image: works with Ark Server tools 1.6.39
+  - Initial image: works with ARK Server tools 1.6.39
 + 1.1:
-  - Works with Ark Server tools 1.6.40
+  - Works with ARK Server tools 1.6.40
 + 2.0:
   - Multi server instance
