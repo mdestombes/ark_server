@@ -1,13 +1,13 @@
 ark:
-  container_name: ark
-  image: turzam/ark
+  container_name: ark_server
+  image: mdestombes/ark_server:v1.1
   environment:
-    - SESSIONNAME=Ark Docker
-    - SERVERMAP=TheIsland
-    - SERVERPASSWORD="" 
-    - ADMINPASSWORD=adminpassword
-    - BACKUPONSTART=1
-    - UPDATEONSTART=1
+    - SESSIONNAME="Ark Docker"
+    - SERVERMAP="TheIsland"
+    - SERVERPASSWORD="ServerPassword" 
+    - ADMINPASSWORD="AdminPassword"
+    - BACKUPONSTART=0
+    - UPDATEONSTART=0
     - TZ=Europe/Paris
   volumes:
     - /my/path/to/ark:/ark

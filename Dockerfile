@@ -27,6 +27,8 @@ ENV STEAMPORT 7778
 ENV BACKUPONSTOP 0
 # If the server warn the players before stopping
 ENV WARNONSTOP 0
+# Number of sub instance server
+ENV NBINSTANCES 1
 
 # Install dependencies
 RUN apt-get update &&\
@@ -72,7 +74,7 @@ RUN ln -s /usr/local/bin/arkmanager /usr/bin/arkmanager
 
 # Define default config file in /etc/arkmanager
 COPY arkmanager-system.cfg /etc/arkmanager/arkmanager.cfg
-COPY arkmanager-user.cfg /etc/arkmanager/instances/main.cfg
+COPY arkmanager-user.cfg /tmp/main_instance.cfg
 
 # download steamcmd
 RUN mkdir /home/steam/steamcmd &&\ 
