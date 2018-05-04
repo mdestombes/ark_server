@@ -1,7 +1,5 @@
 # ARK: Survival Evolved - Docker
 
-__*Take care, `Last` version is often in dev. Use stable version with TAG*__
-
 Docker build for managing an ARK: Survival Evolved server.
 
 This image is base on TuRz4m/Ark-docker functionnalities. Thanks for this good base of Dockerfile and existing structure.
