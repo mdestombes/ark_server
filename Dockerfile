@@ -75,7 +75,7 @@ RUN ./install.sh steam
 RUN ln -s /usr/local/bin/arkmanager /usr/bin/arkmanager
 
 # Define default config file in /etc/arkmanager
-COPY arkmanager-system.cfg /etc/arkmanager/arkmanager.cfg
+COPY arkmanager-system.cfg /tmp/arkmanager.cfg
 COPY arkmanager-user.cfg /tmp/main_instance.cfg
 
 # download steamcmd

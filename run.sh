@@ -57,7 +57,13 @@ function stop {
 # Add a template directory to store the last version of config file
 if [ ! -d /home/steam/ARK/template ]; then
 	mkdir /home/steam/ARK/template
+
+	NEW_CLUSTER_ID="${SESSIONNAME}_cluster"
+	cat /tmp/arkmanager.cfg | sed \
+	    -e "s:__CLUSTER_ID__:$NEW_CLUSTER_ID:g" \
+	    > /etc/arkmanager/arkmanager.cfg
 	cp /etc/arkmanager/arkmanager.cfg /home/steam/ARK/template/arkmanager.cfg
+
 	# Multi instance management
 	for (( CUR_INSTANCE=1; CUR_INSTANCE<=$NBINSTANCES; CUR_INSTANCE++ )); do
 
@@ -66,8 +72,6 @@ if [ ! -d /home/steam/ARK/template ]; then
 			NEW_STEAM_PORT=$(($STEAMPORT))
 			NEW_RCON_PORT=$(($RCONPORT))
 			NEW_SESSION_NAME="${SESSIONNAME}_${SERVERMAP}_Main"
-			NEW_SAVED_DIR="Save_Main"
-			NEW_SERVER_NAME="server_Main"
 
 			cat /tmp/main_instance.cfg | sed \
 			    -e "s:__SERVERMAP__:$SERVERMAP:g" \
@@ -78,8 +82,6 @@ if [ ! -d /home/steam/ARK/template ]; then
 			    -e "s:__ADMINPASSWORD__:$ADMINPASSWORD:g" \
 			    -e "s:__NBPLAYERS__:$NBPLAYERS:g" \
 			    -e "s:__SERVERPORT__:$NEW_SERVER_PORT:g" \
-			    -e "s:__SAVED__:$NEW_SAVED_DIR:g" \
-			    -e "s:__SERVER__:$NEW_SERVER_NAME:g" \
 			    > /etc/arkmanager/instances/main.cfg
 
 			cp /etc/arkmanager/instances/main.cfg /home/steam/ARK/template/main.cfg
@@ -91,8 +93,6 @@ if [ ! -d /home/steam/ARK/template ]; then
 			NEW_STEAM_PORT=$(($STEAMPORT + ${N_SUB}))
 			NEW_RCON_PORT=$(($RCONPORT + ${N_SUB}))
 			NEW_SESSION_NAME="${SESSIONNAME}_${SERVERMAP}_Sub${N_SUB}"
-			NEW_SAVED_DIR="Save_Sub"${N_SUB}
-			NEW_SERVER_NAME="server_Sub"${N_SUB}
 
 			cat /tmp/main_instance.cfg | sed \
 			    -e "s:__SERVERMAP__:$SERVERMAP:g" \
@@ -103,8 +103,6 @@ if [ ! -d /home/steam/ARK/template ]; then
 			    -e "s:__ADMINPASSWORD__:$ADMINPASSWORD:g" \
 			    -e "s:__NBPLAYERS__:$NBPLAYERS:g" \
 			    -e "s:__SERVERPORT__:$NEW_SERVER_PORT:g" \
-			    -e "s:__SAVED__:$NEW_SAVED_DIR:g" \
-			    -e "s:__SERVER__:$NEW_SERVER_NAME:g" \
 			    > /etc/arkmanager/instances/sub${N_SUB}.cfg
 
 			cp /etc/arkmanager/instances/sub${N_SUB}.cfg /home/steam/ARK/template/sub${N_SUB}.cfg
