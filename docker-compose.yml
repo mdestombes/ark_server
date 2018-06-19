@@ -1,6 +1,6 @@
 ark:
   container_name: ark_server
-  image: mdestombes/ark_server:v1.1
+  image: mdestombes/ark_server:v2.1
   environment:
     - SESSIONNAME="Ark Docker"
     - SERVERMAP="TheIsland"

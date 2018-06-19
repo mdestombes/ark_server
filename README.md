@@ -1,5 +1,7 @@
 # ARK: Survival Evolved - Docker
 
+__*Take care, `Last` version is often in dev. Use stable version with TAG*__
+
 Docker build for managing an ARK: Survival Evolved server.
 
 This image is base on TuRz4m/Ark-docker functionnalities. Thanks for this good base of Dockerfile and existing structure.
@@ -160,3 +162,5 @@ Time Zone : Set the container timezone (for crontab). (You can get your timezone
   - Works with ARK Server tools 1.6.40
 + 2.0:
   - Multi server instance
++ 2.1:
+  - Works with ARK Server tools 1.6.41

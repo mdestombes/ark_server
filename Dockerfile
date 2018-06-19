@@ -18,7 +18,7 @@ ENV UPDATEONSTART 0
 # if the server is backup when start with docker start
 ENV BACKUPONSTART 0
 #  Tag on github for ark server tools
-ENV GIT_TAG v1.6.40
+ENV GIT_TAG v1.6.41
 # Server PORT
 ENV SERVERPORT 27015
 # Steam port
