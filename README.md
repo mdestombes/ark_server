@@ -164,3 +164,5 @@ Time Zone : Set the container timezone (for crontab). (You can get your timezone
   - Multi server instance
 + 2.1:
   - Works with ARK Server tools 1.6.41
++ 2.2:
+  - Works with ARK Server tools 1.6.42
